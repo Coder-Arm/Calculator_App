@@ -49,23 +49,37 @@ clearBtn.addEventListener("click",()=>{
 })
 const addBtn = document.getElementById("+");
 addBtn.addEventListener("click",()=>{
+  
+  if(screen.value.includes("-") || screen.value.includes("x") || screen.value.includes("/")){
+     res();
+  }
+  
   screen.value+="+";
 })
 const subBtn = document.getElementById("-");
 subBtn.addEventListener("click",()=>{
+  if(screen.value.includes("+") || screen.value.includes("x") || screen.value.includes("/")){
+    res();
+ }
   screen.value+="-";
 })
 const mulBtn = document.getElementById("X");
 mulBtn.addEventListener("click",()=>{
+  if(screen.value.includes("-") || screen.value.includes("+") || screen.value.includes("/")){
+    res();
+ }
   screen.value+="x";
 })
 const divideBtn = document.getElementById("/");
 divideBtn.addEventListener("click",()=>{
+  if(screen.value.includes("-") || screen.value.includes("x") || screen.value.includes("+")){
+    res();
+ }
   screen.value+="/";
 })
 const equalBtn = document.getElementById("=");
-equalBtn.addEventListener("click",()=>{
-   if(screen.value.includes("+")){
+function res(){
+  if(screen.value.includes("+")){
     let arr = screen.value.split("+");
     screen.value = Number(arr[0]) + Number(arr[1]);
    }
@@ -81,7 +95,8 @@ equalBtn.addEventListener("click",()=>{
     let arr = screen.value.split("/");
     screen.value = Number(arr[0]) / Number(arr[1]);
    }
-})
+}
+equalBtn.addEventListener("click",res)
 
 const delBtn = document.getElementById("delete");
 delBtn.addEventListener("click",()=>{
